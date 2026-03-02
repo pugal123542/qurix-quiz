@@ -2,69 +2,157 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Qurix Quiz Pro</title>
+<title>Quizzy 2026</title>
 <style>
 *{box-sizing:border-box;font-family:Arial;}
 html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;}
-body{display:flex;justify-content:center;align-items:center;background:linear-gradient(120deg,#020617,#0f172a);color:white;position:fixed;top:0;left:0;}
-body::before{content:"";position:absolute;width:200%;height:200%;background-image:radial-gradient(circle,#ffffff33 1px,transparent 1px);background-size:60px 60px;animation:particles 30s linear infinite;z-index:-1;}
-@keyframes particles{0%{transform:translateY(0)}100%{transform:translateY(-200px)}}
-.card{max-width:500px;width:95%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:30px;border-radius:20px;backdrop-filter:blur(15px);background:rgba(255,255,255,0.08);box-shadow:0 10px 40px rgba(0,0,0,0.6);text-align:center;position:relative;}
-input{width:100%;padding:12px;margin-top:6px;border:none;border-radius:8px;font-size:16px;overflow-x:auto;white-space:nowrap;text-overflow:ellipsis;}
-input:focus{outline:2px solid #22c55e;}
-#login button, #home button{background:#22c55e;color:white;width:100%;padding:12px;margin-top:10px;border:none;border-radius:10px;font-size:16px;cursor:pointer;transition:0.2s;}
-#login button:hover,#home button:hover{transform:translateY(-2px);}
-.option{width:100%;padding:14px;margin:6px 0;border-radius:12px;text-align:center;cursor:pointer;transition:0.2s;background:rgba(255,255,255,0.1);}
+body{display:flex;justify-content:center;align-items:center;background:linear-gradient(120deg,#0f0c29,#302b63,#24243e);color:white;position:fixed;top:0;left:0;}
+body::before{content:"";position:absolute;width:200%;height:200%;background-image:radial-gradient(circle,#ffffff22 1px,transparent 1px);background-size:50px 50px;animation:particles 25s linear infinite;z-index:-1;}
+
+.card{
+  max-width:900px;
+  width:90%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:50px;
+  border-radius:20px;
+  backdrop-filter:blur(20px);
+  background:rgba(255,255,255,0.05);
+  box-shadow:0 15px 50px rgba(0,0,0,0.7);
+  text-align:center;
+  position:relative;
+}
+input{
+  width:100%;
+  padding:14px;
+  margin-top:8px;
+  border:none;
+  border-radius:10px;
+  font-size:18px;
+}
+input:focus{outline:2px solid #facc15;}
+button{
+  background:#facc15;
+  color:black;
+  width:100%;
+  padding:14px;
+  margin-top:12px;
+  border:none;
+  border-radius:12px;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.2s;
+}
+button:hover{transform:translateY(-2px);}
+.option{
+  width:100%;
+  padding:14px;
+  margin:8px 0;
+  border-radius:12px;
+  text-align:center;
+  cursor:pointer;
+  transition:0.2s;
+  background:rgba(255,255,255,0.1);
+}
 .option:hover{background:rgba(255,255,255,0.2);}
 .option.correct{background:#22c55e;color:white;}
-#timer{font-size:24px;width:100%;text-align:center;margin-bottom:10px;color:#ffff00;text-shadow:0 0 10px #ffff00,0 0 20px #ffff00;}
-#totaltimer{font-size:16px;width:100%;text-align:center;margin-bottom:5px;color:#facc15;}
-#category{font-size:18px;color:#22c55e;margin-bottom:5px;}
-.progress{width:100%;height:8px;background:#334155;border-radius:10px;overflow:hidden;margin-top:10px;}
-.progress-bar{height:8px;width:0%;background:#22c55e;transition:0.4s;}
-.nav-btns{display:flex;justify-content:space-between;margin-top:10px;width:100%;}
-.nav-btns button{width:48%;}
+#timer{font-size:24px;width:100%;text-align:center;margin-bottom:10px;color:#facc15;text-shadow:0 0 10px #facc15,0 0 20px #facc15;}
+#totaltimer{font-size:18px;width:100%;text-align:center;margin-bottom:10px;color:#facc15;}
+#category{font-size:20px;color:#22c55e;margin-bottom:8px;}
+.progress{width:100%;height:10px;background:#334155;border-radius:10px;overflow:hidden;margin-top:15px;}
+.progress-bar{height:10px;width:0%;background:#22c55e;transition:0.4s;}
 .hidden{display:none;}
-.level-btn{width:48%;padding:12px;border-radius:10px;margin:5px;cursor:pointer;background:white;color:black;transition:0.2s;}
+.level-btn{width:48%;padding:14px;border-radius:12px;margin:5px;cursor:pointer;transition:0.2s;font-size:18px;}
+.level-btn.easy{background:white;color:black;}
+.level-btn.medium{background:white;color:black;}
+.level-btn.hard{background:white;color:black;}
 .level-btn.locked{background:#555;color:white;cursor:not-allowed;}
 .level-btn:hover:not(.locked){transform:translateY(-2px);}
-.disclaimer{font-size:14px;color:#fbbf24;margin:10px 0;text-align:center;}
+.back-home{
+  margin-top:20px;
+  background:white;color:black;width:100%;padding:14px;border-radius:12px;font-size:18px;
+}
+.coin-bar{
+  position:absolute;
+  top:15px;
+  left:15px;
+  font-size:16px;
+  background:rgba(255,255,255,0.2);
+  padding:6px 10px;
+  border-radius:12px;
+}
+#viewAnswerBtn{
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border-radius:12px;
+  background:#facc15;
+  color:black;
+  font-size:18px;
+  cursor:pointer;
+}
+.nav-btns{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+  width:100%;
+}
+.nav-btns button{
+  width:48%;
+  background:#22c55e;
+  color:white;
+}
 </style>
 </head>
 <body>
 
+<!-- LOGIN -->
 <div id="login" class="card">
-<h2>Login</h2>
+<h2 style="font-size:36px;">Login</h2>
 <input id="username" placeholder="Username">
 <input id="password" type="password" placeholder="Password">
 <button id="togglePassBtn" onclick="togglePassword()">Show Password</button>
 <button id="loginBtn" onclick="login()">Login</button>
 </div>
 
+<!-- HOME -->
 <div id="home" class="card hidden">
-<h2>Welcome to Qurix</h2>
-<p>Select difficulty level to start quiz</p>
+<div class="coin-bar">Coins: <span id="coinCount">0</span></div>
+<h1 style="font-size:48px;margin-bottom:30px;">Welcome to Quizzy</h1>
+<p style="font-size:24px;margin-bottom:40px;">Select difficulty level to start your quiz</p>
 <div id="levels">
-<button class="level-btn" id="easyBtn" onclick="startLevel('easy')">Easy</button>
-<button class="level-btn locked" id="mediumBtn" onclick="startLevel('medium')">Medium </button>
-<button class="level-btn locked" id="hardBtn" onclick="startLevel('hard')">Hard </button>
+<button class="level-btn easy" id="easyBtn" onclick="startLevel('easy')">Easy</button>
+<button class="level-btn medium locked" id="mediumBtn" onclick="startLevel('medium')">Medium</button>
+<button class="level-btn hard locked" id="hardBtn" onclick="startLevel('hard')">Hard</button>
 </div>
 </div>
 
+<!-- QUIZ -->
 <div id="quiz" class="card hidden">
-<div id="totaltimer">Total Time: 50:00</div>
+<div class="coin-bar">Coins: <span id="coinCount2">0</span></div>
+<div id="totaltimer">Total Time: 40:00</div>
 <h3 id="qnumber"></h3>
 <div id="category"></div>
-<div id="timer">60</div>
+<div id="timer">40</div>
 <div class="progress"><div id="progressBar" class="progress-bar"></div></div>
 <h2 id="question"></h2>
 <div id="options" style="flex-grow:1;overflow-y:auto;width:100%;"></div>
+
+<!-- View Answer button just below options -->
+<button id="viewAnswerBtn" onclick="viewAnswer()">View Answer (-10 coins)</button>
+
+<!-- Previous / Next under View Answer button -->
 <div class="nav-btns">
 <button onclick="prevQuestion()">Previous</button>
 <button onclick="nextQuestion()">Next</button>
 </div>
+
+<button class="back-home" onclick="backToHome()">Back to Home</button>
 </div>
 
+<!-- RESULT -->
 <div id="result" class="card hidden">
 <h2>Quiz Finished</h2>
 <h3 id="score"></h3>
@@ -76,10 +164,9 @@ input:focus{outline:2px solid #22c55e;}
 window.onload=function(){
   let savedU=localStorage.getItem("savedUser");
   let savedP=localStorage.getItem("savedPass");
-  if(savedU && savedP){
-    document.getElementById("username").value=savedU;
-    document.getElementById("password").value=savedP;
-  }
+  let savedC=localStorage.getItem("savedCoins");
+  if(savedU && savedP){document.getElementById("username").value=savedU;document.getElementById("password").value=savedP;}
+  if(savedC){coin=parseInt(savedC);updateCoins();}
 }
 
 let passwordVisible=false;
@@ -96,16 +183,22 @@ function login(){
   if(u!=="" && p!==""){
     localStorage.setItem("savedUser",u);
     localStorage.setItem("savedPass",p);
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("home").classList.remove("hidden");
+    document.getElementById("login").classList.add('hidden');
+    document.getElementById("home").classList.remove('hidden');
   }else alert("Enter username and password");
 }
 
-// Quiz
-let current=0, answers=[], timeLeft=60, totalTime=50*60, timerVar, totalTimerVar;
-let currentLevel='easy';
+// Coins
+let coin=0;
+function updateCoins(){
+  document.getElementById("coinCount").innerText=coin;
+  document.getElementById("coinCount2").innerText=coin;
+  localStorage.setItem("savedCoins",coin);
+}
 
-// Easy 50 questions
+// Quiz
+let current=0, answers=[], timeLeft=40, totalTime=40*60, timerVar, totalTimerVar;
+let currentLevel='easy';
 let questionsData={
 easy:[
 {cat:"Logical", q:"Find next: 2,6,12,20,?", o:["30","28","32","34"], a:0},
@@ -160,7 +253,7 @@ easy:[
 {cat:"Quant/Maths", q:"5!=?", o:["120","24","60","100"], a:0}
 ],
 medium:[
-  {cat:"Logical", q:"Find missing number: 7,14,31,70,155,?", o:["310","315","312","320"], a:2},
+{cat:"Logical", q:"Find missing number: 7,14,31,70,155,?", o:["310","315","312","320"], a:2},
 {cat:"Logical", q:"Which does not fit: 121,169,196,225,256,289,300?", o:["225","256","196","300"], a:3},
 {cat:"Logical", q:"Find missing term: Z,X,V,R,?,N", o:["P","Q","S","T"], a:0},
 {cat:"Logical", q:"A man walks 5 km east,3 km south,2 km west,4 km north,1 km east. Distance from start?", o:["2 km","3 km","4 km","5 km"], a:1},
@@ -211,7 +304,8 @@ medium:[
 {cat:"Math", q:"5² + 12² = ?", o:["169","150","170","160"], a:0},
 {cat:"Logical", q:"Find missing: 1,2,6,24,?", o:["120","48","60","100"], a:0}
 ],
-hard:[{cat:"Logical", q:"Find the missing number: 4, 9, 19, 39, 79, ?", o:["149","159","169","139"], a:1},
+hard:[
+{cat:"Logical", q:"Find the missing number: 4, 9, 19, 39, 79, ?", o:["149","159","169","139"], a:1},
 {cat:"Logical", q:"Which number replaces ?: 3, 6, 18, 72, 360, ?", o:["1800","2160","2520","2880"], a:0},
 {cat:"Logical", q:"Find the odd number: 121, 144, 169, 196, 210", o:["121","144","196","210"], a:3},
 {cat:"Logical", q:"If A=1, B=3, C=6, D=10, then H=?", o:["28","32","36","30"], a:0},
@@ -264,17 +358,17 @@ hard:[{cat:"Logical", q:"Find the missing number: 4, 9, 19, 39, 79, ?", o:["149"
 {cat:"Quant", q:"Area of circle radius 7 (π=22/7)", o:["154","144","140","160"], a:0},
 {cat:"Quant", q:"Average of first 50 numbers?", o:["25.5","26","24","23"], a:0},
 {cat:"Quant", q:"If selling price = 1200 and cost price = 1000 profit %?", o:["20%","25%","18%","22%"], a:0},
-{cat:"Quant", q:"Solve: 2x + 3 = 19", o:["7","8","9","6"], a:1}]
+{cat:"Quant", q:"Solve: 2x + 3 = 19", o:["7","8","9","6"], a:1}
+]
 };
 
-// Rest of quiz JS same as previous code
 function startLevel(level){
   if(level==='medium' && !localStorage.getItem('easyComplete')) return alert("Finish Easy level first!");
   if(level==='hard' && !localStorage.getItem('mediumComplete')) return alert("Finish Medium level first!");
   currentLevel=level; current=0; answers=[];
   document.getElementById('home').classList.add('hidden');
   document.getElementById('quiz').classList.remove('hidden');
-  totalTime=50*60;
+  totalTime=40*60;
   startTotalTimer();
   loadQuestion();
 }
@@ -300,13 +394,36 @@ function loadQuestion(){
   startQuestionTimer();
 }
 
-function selectAnswer(i,elem){answers[current]=i; document.querySelectorAll(".option").forEach(opt=>opt.classList.remove("correct")); elem.classList.add("correct");}
+function selectAnswer(i,elem){
+  let q=questionsData[currentLevel][current];
+  if(answers[current]===undefined){ 
+    if(i===q.correctShuffled){coin++;updateCoins();q.coinGiven=true;}
+  }
+  answers[current]=i;
+  document.querySelectorAll(".option").forEach(opt=>opt.classList.remove("correct"));
+  elem.classList.add("correct");
+}
+
 function nextQuestion(){if(current<questionsData[currentLevel].length-1){current++;loadQuestion();}else finishQuiz();}
 function prevQuestion(){if(current>0){current--;loadQuestion();}}
-function startQuestionTimer(){clearInterval(timerVar);timeLeft=60;const timerElem=document.getElementById("timer");timerElem.innerText=timeLeft;timerVar=setInterval(()=>{timeLeft--;timerElem.innerText=timeLeft;if(timeLeft<=0) nextQuestion();},1000);}
+function startQuestionTimer(){clearInterval(timerVar);timeLeft=40;const timerElem=document.getElementById("timer");timerElem.innerText=timeLeft;timerVar=setInterval(()=>{timeLeft--;timerElem.innerText=timeLeft;if(timeLeft<=0) nextQuestion();},1000);}
 function startTotalTimer(){clearInterval(totalTimerVar);totalTimerVar=setInterval(()=>{totalTime--;let min=Math.floor(totalTime/60);let sec=totalTime%60;document.getElementById("totaltimer").innerText="Total Time: "+String(min).padStart(2,'0')+":"+String(sec).padStart(2,'0');if(totalTime<=0) finishQuiz();},1000);}
-function finishQuiz(){clearInterval(timerVar); clearInterval(totalTimerVar);document.getElementById("quiz").classList.add("hidden");document.getElementById("result").classList.remove("hidden");let score=0;for(let i=0;i<questionsData[currentLevel].length;i++){if(answers[i]===questionsData[currentLevel][i].correctShuffled) score++;}document.getElementById("score").innerText="Correct: "+score+" / "+questionsData[currentLevel].length;if(currentLevel==='easy'){localStorage.setItem('easyComplete','1');document.getElementById('mediumBtn').classList.remove('locked');}if(currentLevel==='medium'){localStorage.setItem('mediumComplete','1');document.getElementById('hardBtn').classList.remove('locked');}}
-function restartQuiz(){current=0; answers=[]; totalTime=50*60; document.getElementById("result").classList.add("hidden"); document.getElementById("home").classList.remove("hidden");}
+function finishQuiz(){
+  clearInterval(timerVar); clearInterval(totalTimerVar);
+  document.getElementById("quiz").classList.add("hidden");
+  document.getElementById("result").classList.remove("hidden");
+  let score=0;
+  for(let i=0;i<questionsData[currentLevel].length;i++){
+    if(answers[i]===questionsData[currentLevel][i].correctShuffled) score++;
+  }
+  document.getElementById("score").innerText="Correct: "+score+" / "+questionsData[currentLevel].length;
+  if(currentLevel==='easy'){localStorage.setItem('easyComplete','1');document.getElementById('mediumBtn').classList.remove('locked');}
+  if(currentLevel==='medium'){localStorage.setItem('mediumComplete','1');document.getElementById('hardBtn').classList.remove('locked');}
+}
+
+function restartQuiz(){current=0; answers=[]; totalTime=40*60; document.getElementById("result").classList.add("hidden"); document.getElementById("home").classList.remove("hidden");}
+function backToHome(){clearInterval(timerVar); clearInterval(totalTimerVar); document.getElementById("quiz").classList.add("hidden"); document.getElementById("home").classList.remove("hidden");}
+function viewAnswer(){if(coin>=10){coin-=10;updateCoins();alert("Correct answer is shown!");}else alert("Not enough coins!");}
 </script>
 </body>
 </html>
